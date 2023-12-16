@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "236579797107",
+    "project_id": "cryptoapp-7ad07",
+    "storage_bucket": "cryptoapp-7ad07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236579797107:android:7d5e2664def424d7ab5206",
+        "android_client_info": {
+          "package_name": "jetpack.tutorial.cryptoapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCByiYrwZ4cdorn-MCi7dNqKCIsZkQ2NCw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
