@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoListingModel
 import jetpack.tutorial.cryptoapp.ui.theme.ColorGreen
+import jetpack.tutorial.cryptoapp.ui.theme.ColorRed
 import jetpack.tutorial.cryptoapp.ui.theme.ColorWhite
 import jetpack.tutorial.cryptoapp.ui.theme.CryptoAppTheme
 import jetpack.tutorial.cryptoapp.ui.theme.LargeTextBold
@@ -56,7 +57,7 @@ fun CoinItem(
                 style = LargeTextBold,
             )
             Text(
-                text = crypto.symbol,
+                text = crypto.symbol.uppercase(),
                 style = MediumTextRegular,
                 color = LightOnSurfaceVariant
             )
@@ -70,9 +71,9 @@ fun CoinItem(
                 style = LargeTextSemiBold
             )
             Text(
-                text = "+9.77%",
+                text = crypto.priceChangePercentage24h.toString(),
                 style = SmallTextBold,
-                color = ColorGreen
+                color = if(crypto.priceChangePercentage24h > 0)  ColorGreen else ColorRed
             )
         }
     }

@@ -6,13 +6,13 @@ import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoListingMode
 
 fun CryptoListingDto.toCryptoListing(): CryptoListingModel {
     return CryptoListingModel(
-        id, symbol, name, image, currentPrice
+        id, symbol, name, image, currentPrice, priceChangePercentage24h
     )
 }
 
 fun CryptoListingModel.toCryptoListingDto(): CryptoListingDto {
     return CryptoListingDto(
-        id, symbol, name, image, currentPrice
+        id, symbol, name, image, currentPrice, priceChangePercentage24h
     )
 }
 
@@ -22,12 +22,13 @@ fun CryptoListingModel.toCryptoListingEntity(): CryptoListingEntity {
         symbol = symbol,
         name = name,
         image = image,
-        currentPrice = currentPrice
+        currentPrice = currentPrice,
+        priceChangePercentage24h = priceChangePercentage24h
     )
 }
 
 fun CryptoListingEntity.toCryptoListing(): CryptoListingModel {
     return CryptoListingModel(
-        id, symbol, name, image, currentPrice
+        id, symbol, name, image, currentPrice, priceChangePercentage24h
     )
 }
