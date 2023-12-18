@@ -1,6 +1,6 @@
 package jetpack.tutorial.cryptoapp.features.crypto.domain.model
 
-data class CryptoListing(
+data class CryptoListingModel(
     val id: String,
     val symbol: String,
     val name: String,

@@ -1,17 +1,18 @@
 package jetpack.tutorial.cryptoapp.features.crypto.domain.repository
 
 import jetpack.tutorial.cryptoapp.core.networking.utils.ResultModel
-import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoInfo
-import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoListing
+import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoInfoModel
+import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoListingModel
 import kotlinx.coroutines.flow.Flow
 
 interface CryptoRepository {
 
-    suspend fun getCryptoListings(
-        fetchFromRemote: Boolean
-    ): Flow<ResultModel<List<CryptoListing>>>
+    fun getCryptoListings(
+        fetchFromRemote: Boolean,
+        query: String
+    ): Flow<ResultModel<List<CryptoListingModel>>>
 
-    suspend fun getCryptoInfoById(
+    fun getCryptoInfoById(
         id: String
-    ): Flow<ResultModel<CryptoInfo>>
+    ): Flow<ResultModel<CryptoInfoModel>>
 }

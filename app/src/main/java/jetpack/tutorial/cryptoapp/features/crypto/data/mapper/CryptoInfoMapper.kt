@@ -1,10 +1,10 @@
 package jetpack.tutorial.cryptoapp.features.crypto.data.mapper
 
 import jetpack.tutorial.cryptoapp.features.crypto.data.remote.dto.CryptoInfoDto
-import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoInfo
+import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoInfoModel
 
-fun CryptoInfoDto.toCryptoInfo(): CryptoInfo {
-    return CryptoInfo(
+fun CryptoInfoDto.toCryptoInfo(): CryptoInfoModel {
+    return CryptoInfoModel(
         id,
         symbol,
         name,
@@ -34,7 +34,7 @@ fun CryptoInfoDto.toCryptoInfo(): CryptoInfo {
     )
 }
 
-fun CryptoInfo.toCryptoInfoDto(): CryptoInfoDto {
+fun CryptoInfoModel.toCryptoInfoDto(): CryptoInfoDto {
     return CryptoInfoDto(
         id,
         symbol,
