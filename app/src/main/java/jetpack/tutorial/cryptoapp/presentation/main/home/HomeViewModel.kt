@@ -90,4 +90,9 @@ class HomeViewModel @Inject constructor(
     }
 
     class ViewEffect: BaseViewEffect
+
+    override fun onCleared() {
+        super.onCleared()
+        getListCoinsJob?.cancel()
+    }
 }

@@ -7,6 +7,8 @@ import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
 import jetpack.tutorial.cryptoapp.features.crypto.domain.usecase.get_crypto_info.GetCryptoInfoUseCase
 import jetpack.tutorial.cryptoapp.features.crypto.domain.usecase.get_crypto_info.GetCryptoInfoUseCaseImpl
+import jetpack.tutorial.cryptoapp.features.crypto.domain.usecase.get_crypto_intra_info.GetCryptoIntraInfoUseCase
+import jetpack.tutorial.cryptoapp.features.crypto.domain.usecase.get_crypto_intra_info.GetCryptoIntraInfoUseCaseImpl
 import jetpack.tutorial.cryptoapp.features.crypto.domain.usecase.get_crypto_listing.GetCryptoListingUseCase
 import jetpack.tutorial.cryptoapp.features.crypto.domain.usecase.get_crypto_listing.GetCryptoListingUseCaseImpl
 
@@ -22,5 +24,7 @@ abstract class DomainCryptoModule {
     @ViewModelScoped
     abstract fun bindGetCryptoInfoUseCas(impl: GetCryptoInfoUseCaseImpl): GetCryptoInfoUseCase
 
-
+    @Binds
+    @ViewModelScoped
+    abstract fun bindGetCryptoIntraInfoUseCase(impl: GetCryptoIntraInfoUseCaseImpl): GetCryptoIntraInfoUseCase
 }

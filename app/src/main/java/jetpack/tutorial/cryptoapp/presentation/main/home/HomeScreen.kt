@@ -1,8 +1,6 @@
 package jetpack.tutorial.cryptoapp.presentation.main.home
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -77,7 +75,7 @@ fun HomeScreen(
             LazyColumn {
                 items(state.listCoins) { crypto ->
                     CoinItem(crypto) { id ->
-                        navigator.navigate(CoinInfoScreenDestination())
+                        navigator.navigate(CoinInfoScreenDestination(id))
                     }
                 }
             }

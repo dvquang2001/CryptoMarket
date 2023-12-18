@@ -1,13 +1,14 @@
 package jetpack.tutorial.cryptoapp.features.crypto.data.repository
 
-import android.util.Log
 import jetpack.tutorial.cryptoapp.core.networking.utils.ResultModel
 import jetpack.tutorial.cryptoapp.features.crypto.data.local.CryptoDatabase
 import jetpack.tutorial.cryptoapp.features.crypto.data.mapper.toCryptoInfo
+import jetpack.tutorial.cryptoapp.features.crypto.data.mapper.toCryptoIntraInfoModel
 import jetpack.tutorial.cryptoapp.features.crypto.data.mapper.toCryptoListing
 import jetpack.tutorial.cryptoapp.features.crypto.data.mapper.toCryptoListingEntity
 import jetpack.tutorial.cryptoapp.features.crypto.data.remote.CryptoApi
 import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoInfoModel
+import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoIntraInfoModel
 import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoListingModel
 import jetpack.tutorial.cryptoapp.features.crypto.domain.repository.CryptoRepository
 import kotlinx.coroutines.flow.Flow
@@ -66,6 +67,20 @@ class CryptoRepositoryImpl @Inject constructor(
             val result = try {
                 val cryptoInfoDto = api.getCoinInfoById(id)
                 val result = cryptoInfoDto.toCryptoInfo()
+                ResultModel.Success(result)
+            } catch (t: Throwable) {
+                t.printStackTrace()
+                ResultModel.Error(t)
+            }
+            emit(result)
+        }
+    }
+
+    override fun getCoinPricesById(id: String): Flow<ResultModel<CryptoIntraInfoModel>> {
+        return flow {
+            val result = try {
+                val cryptoIntraInfoDto = api.getCoinPricesById(id)
+                val result = cryptoIntraInfoDto.toCryptoIntraInfoModel()
                 ResultModel.Success(result)
             } catch (t: Throwable) {
                 t.printStackTrace()
