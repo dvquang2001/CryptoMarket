@@ -23,24 +23,22 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.ramcosta.composedestinations.DestinationsNavHost
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import jetpack.tutorial.cryptoapp.presentation.base.Screen
+import jetpack.tutorial.cryptoapp.presentation.base.itemsScreen
 import jetpack.tutorial.cryptoapp.presentation.main.home.HomeScreen
 import jetpack.tutorial.cryptoapp.presentation.main.market.MarketScreen
 import jetpack.tutorial.cryptoapp.presentation.main.portfolio.PortfolioScreen
 import jetpack.tutorial.cryptoapp.presentation.main.profile.ProfileScreen
 import jetpack.tutorial.cryptoapp.ui.theme.ColorWhite
 import jetpack.tutorial.cryptoapp.ui.theme.CryptoAppTheme
+import jetpack.tutorial.cryptoapp.ui.theme.LightPrimary
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    private val items = listOf(
-        Screen.Home,
-        Screen.Portfolio,
-        Screen.Market,
-        Screen.Profile,
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,16 +49,20 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    AppContent(items = items)
+                    DestinationsNavHost(navGraph = NavGraphs.root)
                 }
             }
         }
     }
 }
 
+@Destination(start = true)
 @Composable
-fun AppContent(items: List<Screen>) {
+fun AppContent(
+    navigator: DestinationsNavigator
+) {
     val navController = rememberNavController()
+
     Scaffold(
         bottomBar = {
             BottomNavigation(
@@ -70,7 +72,7 @@ fun AppContent(items: List<Screen>) {
             ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
-                items.forEach { screen ->
+                itemsScreen.forEach { screen ->
                     BottomNavigationItem(
                         icon = {
                             Icon(
@@ -80,7 +82,7 @@ fun AppContent(items: List<Screen>) {
                         },
                         label = { Text(text = screen.label) },
                         selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
-                        selectedContentColor = ColorWhite,
+                        selectedContentColor = LightPrimary,
                         alwaysShowLabel = true,
                         onClick = {
                             navController.navigate(screen.route) {
@@ -102,7 +104,7 @@ fun AppContent(items: List<Screen>) {
             Modifier.padding(innerPadding)
         ) {
             composable(Screen.Home.route) {
-                HomeScreen()
+                HomeScreen(navigator)
             }
             composable(Screen.Portfolio.route) {
                 PortfolioScreen()

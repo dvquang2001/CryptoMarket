@@ -22,14 +22,17 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import jetpack.tutorial.cryptoapp.destinations.CoinInfoScreenDestination
 import jetpack.tutorial.cryptoapp.presentation.main.common.CoinItem
 import jetpack.tutorial.cryptoapp.ui.theme.LargeTextSemiBold
 import jetpack.tutorial.cryptoapp.ui.theme.LightBackground
 
 @Composable
 fun HomeScreen(
+    navigator: DestinationsNavigator,
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsState(initial = HomeViewModel.ViewState())
     val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = state.isRefreshing)
@@ -74,7 +77,7 @@ fun HomeScreen(
             LazyColumn {
                 items(state.listCoins) { crypto ->
                     CoinItem(crypto) { id ->
-                        // navigate to screen crypto info
+                        navigator.navigate(CoinInfoScreenDestination())
                     }
                 }
             }

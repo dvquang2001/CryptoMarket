@@ -63,7 +63,7 @@ fun CoinItem(
             )
         }
         Spacer(modifier = Modifier.weight(1f))
-        Column (
+        Column(
             horizontalAlignment = Alignment.End
         ) {
             Text(
@@ -71,9 +71,10 @@ fun CoinItem(
                 style = LargeTextSemiBold
             )
             Text(
-                text = crypto.priceChangePercentage24h.toString(),
+                text = if (crypto.priceChangePercentage24h > 0)
+                    "+${crypto.priceChangePercentage24h}%" else "${crypto.priceChangePercentage24h}%",
                 style = SmallTextBold,
-                color = if(crypto.priceChangePercentage24h > 0)  ColorGreen else ColorRed
+                color = if (crypto.priceChangePercentage24h > 0) ColorGreen else ColorRed
             )
         }
     }

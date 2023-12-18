@@ -42,7 +42,10 @@ class HomeViewModel @Inject constructor(
                 is ResultModel.Success -> {
                     setState(
                         currentState.copy(
-                            listCoins = it.result
+                            listCoins = it.result.map { crypto ->
+                                crypto.copy(priceChangePercentage24h =
+                                    Math.round(crypto.priceChangePercentage24h * 100.0) / 100.0)
+                            }
                         )
                     )
                 }
