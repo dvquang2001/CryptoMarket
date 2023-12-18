@@ -78,14 +78,13 @@ dependencies {
 
     // dagger hilt
     implementation("com.google.dagger:hilt-android:2.48")
+    implementation("androidx.hilt:hilt-common:1.1.0")
     ksp("com.google.dagger:hilt-compiler:2.48")
-    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
-    ksp("androidx.hilt:hilt-compiler:1.0.0")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    ksp("androidx.hilt:hilt-compiler:1.1.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
 
     //room
-    implementation("androidx.room:room-runtime:2.6.1")
-    annotationProcessor("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
     ksp("androidx.room:room-compiler:2.6.1")
 
     //retrofit
@@ -100,4 +99,6 @@ dependencies {
     // coil
     implementation("io.coil-kt:coil-compose:2.5.0")
 
+    // swipe refresh
+    implementation("com.google.accompanist:accompanist-swiperefresh:0.24.2-alpha")
 }

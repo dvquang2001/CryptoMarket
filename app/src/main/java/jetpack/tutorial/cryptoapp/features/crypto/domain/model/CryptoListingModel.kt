@@ -5,5 +5,5 @@ data class CryptoListingModel(
     val symbol: String,
     val name: String,
     val image: String,
-    val currentPrice: Int,
+    val currentPrice: Double,
 )

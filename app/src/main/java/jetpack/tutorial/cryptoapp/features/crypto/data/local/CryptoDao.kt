@@ -20,7 +20,7 @@ interface CryptoDao {
         SELECT * 
         FROM cryptolistingentity
         WHERE LOWER(name) LIKE '%' || LOWER(:query) || '%' OR
-        UPPER(:query) == symbol
+        LOWER(:query) == symbol
     """)
     suspend fun searchCryptoListings(query: String): List<CryptoListingEntity>
 }

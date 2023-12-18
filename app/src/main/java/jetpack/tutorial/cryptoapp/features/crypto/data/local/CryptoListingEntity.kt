@@ -10,5 +10,5 @@ data class CryptoListingEntity(
     val symbol: String,
     val name: String,
     val image: String,
-    val currentPrice: Int,
+    val currentPrice: Double,
 )

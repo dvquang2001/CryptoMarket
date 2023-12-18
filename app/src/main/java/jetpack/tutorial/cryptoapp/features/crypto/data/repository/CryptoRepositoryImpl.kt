@@ -1,5 +1,6 @@
 package jetpack.tutorial.cryptoapp.features.crypto.data.repository
 
+import android.util.Log
 import jetpack.tutorial.cryptoapp.core.networking.utils.ResultModel
 import jetpack.tutorial.cryptoapp.features.crypto.data.local.CryptoDatabase
 import jetpack.tutorial.cryptoapp.features.crypto.data.mapper.toCryptoInfo
@@ -29,6 +30,8 @@ class CryptoRepositoryImpl @Inject constructor(
             emit(ResultModel.Success(
                 localListings.map { it.toCryptoListing() }
             ))
+
+
 
             val isDbEmpty = localListings.isEmpty() && query.isBlank() // make sure db has no data
             val shouldJustLoadDataFromCache = !isDbEmpty && !fetchFromRemote
