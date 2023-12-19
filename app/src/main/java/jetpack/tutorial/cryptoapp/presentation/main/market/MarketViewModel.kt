@@ -28,6 +28,7 @@ class MarketViewModel @Inject constructor(
     }
 
     private fun getListCoins(fetchFromRemote: Boolean = false) {
+        getListCoinsJob?.cancel()
         getListCoinsJob = getCryptoListingUseCase.execute(
             param = CryptoListingParam(
                 fetchFromRemote = fetchFromRemote,
@@ -73,7 +74,12 @@ class MarketViewModel @Inject constructor(
     override fun onEvent(event: ViewEvent) {
         when(event) {
             is ViewEvent.OnQuerySearch -> {
-
+                setState(
+                    currentState.copy(
+                        searchQuery = event.query
+                    )
+                )
+                getListCoins()
             }
 
             is ViewEvent.Refresh -> {
