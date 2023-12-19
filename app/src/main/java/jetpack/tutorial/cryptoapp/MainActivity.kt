@@ -110,7 +110,7 @@ fun AppContent(
                 PortfolioScreen(navigator)
             }
             composable(Screen.Market.route) {
-                MarketScreen()
+                MarketScreen(navigator)
             }
             composable(Screen.Profile.route) {
                 ProfileScreen()
