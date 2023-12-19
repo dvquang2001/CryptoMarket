@@ -1,5 +1,6 @@
 package jetpack.tutorial.cryptoapp.presentation.main.market
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -7,11 +8,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Divider
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -40,7 +41,7 @@ fun MarketScreen(
             .fillMaxSize()
             .padding(horizontal = 16.dp, vertical = 12.dp)
     ) {
-        MarketHeader(onSearchClick = { /*TODO*/ })
+        MarketHeader(totalCoinsPercent = state.totalCoinsPercent)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -53,17 +54,42 @@ fun MarketScreen(
             )
         }
         LazyRow {
-            items(state.listTab) { tabName ->
-                val isSelectedTab = tabName == state.currentTab.name
-                TabMarketItem(tabName = tabName, isSelectedTab = isSelectedTab)
+            items(state.listTab) { tab ->
+                val isSelectedTab = tab.name.uppercase() == state.currentTab.name.uppercase()
+                TabMarketItem(
+                    tabName = tab.name,
+                    isSelectedTab = isSelectedTab,
+                    modifier = Modifier.clickable {
+                        viewModel.onEvent(
+                            MarketViewModel.ViewEvent.ChangeTab(tab)
+                        )
+                    })
             }
         }
-        Divider(Modifier.width(1.dp))
+        Divider(Modifier.height(1.dp).fillMaxWidth())
+        Spacer(modifier = Modifier.height(16.dp))
+        OutlinedTextField(
+            value = state.searchQuery,
+            onValueChange = {
+                viewModel.onEvent(
+                    MarketViewModel.ViewEvent.OnQuerySearch(it)
+                )
+            },
+            modifier = Modifier
+                .fillMaxWidth(),
+            placeholder = {
+                Text(text = "Search...")
+            },
+            maxLines = 1,
+            singleLine = true
+        )
         Spacer(modifier = Modifier.height(16.dp))
         SwipeRefresh(
             state = swipeRefreshState,
             onRefresh = {
-
+                viewModel.onEvent(
+                    MarketViewModel.ViewEvent.Refresh
+                )
             }) {
             LazyColumn {
                 items(state.listFilteredCoins) { crypto ->

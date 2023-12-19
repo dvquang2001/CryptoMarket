@@ -48,22 +48,7 @@ fun HomeScreen(
             text = "Trending Coins",
             style = LargeTextSemiBold,
             fontSize = 20.sp)
-        OutlinedTextField(
-            value = state.searchQuery,
-            onValueChange = {
-                viewModel.onEvent(
-                    HomeViewModel.ViewEvent.OnSearchQueryChange(it)
-                )
-            },
-            modifier = Modifier
-                .padding(vertical = 16.dp)
-                .fillMaxWidth(),
-            placeholder = {
-                Text(text = "Search...")
-            },
-            maxLines = 1,
-            singleLine = true
-        )
+       Spacer(modifier = Modifier.height(16.dp))
         SwipeRefresh(
             state = swipeRefreshState,
             onRefresh = {

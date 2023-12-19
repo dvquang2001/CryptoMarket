@@ -9,6 +9,7 @@ import jetpack.tutorial.cryptoapp.presentation.base.BaseViewEffect
 import jetpack.tutorial.cryptoapp.presentation.base.BaseViewEvent
 import jetpack.tutorial.cryptoapp.presentation.base.BaseViewModel
 import jetpack.tutorial.cryptoapp.presentation.base.BaseViewState
+import jetpack.tutorial.cryptoapp.presentation.extentions.toCryptoListingUI
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -38,10 +39,7 @@ class PortfolioViewModel @Inject constructor(
                 is ResultModel.Success -> {
                     setState(
                         currentState.copy(
-                            listCoins = it.result.map { crypto ->
-                                crypto.copy(priceChangePercentage24h =
-                                Math.round(crypto.priceChangePercentage24h * 100.0) / 100.0)
-                            }
+                            listCoins = it.result.toCryptoListingUI()
                         )
                     )
                 }

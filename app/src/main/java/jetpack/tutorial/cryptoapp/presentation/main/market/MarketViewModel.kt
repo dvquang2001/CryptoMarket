@@ -9,6 +9,8 @@ import jetpack.tutorial.cryptoapp.presentation.base.BaseViewEffect
 import jetpack.tutorial.cryptoapp.presentation.base.BaseViewEvent
 import jetpack.tutorial.cryptoapp.presentation.base.BaseViewModel
 import jetpack.tutorial.cryptoapp.presentation.base.BaseViewState
+import jetpack.tutorial.cryptoapp.presentation.extentions.roundBy2Numbers
+import jetpack.tutorial.cryptoapp.presentation.extentions.toCryptoListingUI
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -34,16 +36,15 @@ class MarketViewModel @Inject constructor(
         ).onEach {
             when (it) {
                 is ResultModel.Success -> {
+                    val listCoins = it.result.toCryptoListingUI()
+                    val totalPercent = listCoins
+                        .filter { coin -> coin.priceChangePercentage24h > 0 }
+                        .sumOf { coin -> coin.priceChangePercentage24h }
                     setState(
                         currentState.copy(
-                            listCoins = it.result.map { crypto ->
-                                crypto.copy(priceChangePercentage24h =
-                                Math.round(crypto.priceChangePercentage24h * 100.0) / 100.0)
-                            },
-                            listFilteredCoins = it.result.map { crypto ->
-                                crypto.copy(priceChangePercentage24h =
-                                Math.round(crypto.priceChangePercentage24h * 100.0) / 100.0)
-                            },
+                            listCoins = listCoins,
+                            listFilteredCoins = listCoins,
+                            totalCoinsPercent = totalPercent.roundBy2Numbers()
                         )
                     )
                 }
@@ -56,17 +57,13 @@ class MarketViewModel @Inject constructor(
     }
 
     private fun getListFilter(selectedTab: TabMarket): List<CryptoListingModel> {
-        val filterList = currentState.listCoins.filter {
-            when(selectedTab) {
-                TabMarket.ALL -> {
-                    it.currentPrice != 0.0
-                }
-                TabMarket.GAINER -> {
-                    it.currentPrice > 0
-                }
-                TabMarket.LOSER -> {
-                    it.currentPrice < 0
-                }
+        val filterList = when(selectedTab) {
+            TabMarket.ALL -> currentState.listCoins
+            TabMarket.GAINER -> {
+                currentState.listCoins.filter { it.priceChangePercentage24h > 0.0 }
+            }
+            TabMarket.LOSER -> {
+                currentState.listCoins.filter { it.priceChangePercentage24h < 0.0 }
             }
         }
         return filterList
@@ -101,10 +98,11 @@ class MarketViewModel @Inject constructor(
     data class ViewState(
         val listCoins: List<CryptoListingModel> = emptyList(),
         val listFilteredCoins: List<CryptoListingModel> = emptyList(),
-        val listTab: List<String> = listOf(TabMarket.ALL, TabMarket.GAINER, TabMarket.LOSER).map { it.name },
+        val listTab: List<TabMarket> = listOf(TabMarket.ALL, TabMarket.GAINER, TabMarket.LOSER),
         val currentTab: TabMarket = TabMarket.ALL,
         val searchQuery: String = "",
-        val isRefreshing: Boolean = false
+        val isRefreshing: Boolean = false,
+        val totalCoinsPercent: Double = 0.0,
     ): BaseViewState
 
     sealed class ViewEvent : BaseViewEvent {
