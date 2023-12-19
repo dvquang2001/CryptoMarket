@@ -113,7 +113,7 @@ fun AppContent(
                 MarketScreen(navigator)
             }
             composable(Screen.Profile.route) {
-                ProfileScreen()
+                ProfileScreen(navigator)
             }
         }
     }
