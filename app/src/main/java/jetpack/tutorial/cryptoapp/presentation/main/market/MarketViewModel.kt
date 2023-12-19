@@ -37,13 +37,14 @@ class MarketViewModel @Inject constructor(
             when (it) {
                 is ResultModel.Success -> {
                     val listCoins = it.result.toCryptoListingUI()
+                    val listFiltered = getListFilter(listCoins, currentState.currentTab)
                     val totalPercent = listCoins
                         .filter { coin -> coin.priceChangePercentage24h > 0 }
                         .sumOf { coin -> coin.priceChangePercentage24h }
                     setState(
                         currentState.copy(
                             listCoins = listCoins,
-                            listFilteredCoins = listCoins,
+                            listFilteredCoins = listFiltered,
                             totalCoinsPercent = totalPercent.roundBy2Numbers()
                         )
                     )
@@ -56,14 +57,14 @@ class MarketViewModel @Inject constructor(
         }.launchIn(coroutineScope)
     }
 
-    private fun getListFilter(selectedTab: TabMarket): List<CryptoListingModel> {
+    private fun getListFilter(listCoins: List<CryptoListingModel>, selectedTab: TabMarket): List<CryptoListingModel> {
         val filterList = when(selectedTab) {
-            TabMarket.ALL -> currentState.listCoins
+            TabMarket.ALL -> listCoins
             TabMarket.GAINER -> {
-                currentState.listCoins.filter { it.priceChangePercentage24h > 0.0 }
+                listCoins.filter { it.priceChangePercentage24h > 0.0 }
             }
             TabMarket.LOSER -> {
-                currentState.listCoins.filter { it.priceChangePercentage24h < 0.0 }
+                listCoins.filter { it.priceChangePercentage24h < 0.0 }
             }
         }
         return filterList
@@ -77,18 +78,13 @@ class MarketViewModel @Inject constructor(
 
             is ViewEvent.Refresh -> {
                 getListCoins(fetchFromRemote = true)
-                setState(
-                    currentState.copy(
-                        listFilteredCoins = getListFilter(currentState.currentTab)
-                    )
-                )
             }
 
             is ViewEvent.ChangeTab -> {
                 setState(
                     currentState.copy(
                         currentTab = event.selectedTab,
-                        listFilteredCoins = getListFilter(event.selectedTab)
+                        listFilteredCoins = getListFilter(currentState.listCoins, event.selectedTab)
                     )
                 )
             }
