@@ -71,7 +71,7 @@ class CoinInfoViewModel @Inject constructor(
                     is ResultModel.Success -> {
                         setState(
                             currentState.copy(
-                                dataIntraInfo = it.result.convertToListPairData()
+                                dataIntraInfo = it.result.convertToListPairData().takeLast(10)
                             )
                         )
                     }

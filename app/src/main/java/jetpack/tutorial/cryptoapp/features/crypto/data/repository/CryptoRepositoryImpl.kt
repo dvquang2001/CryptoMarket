@@ -66,7 +66,7 @@ class CryptoRepositoryImpl @Inject constructor(
         return flow {
             val result = try {
                 val cryptoInfoDto = api.getCoinInfoById(id)
-                val result = cryptoInfoDto.toCryptoInfo()
+                val result = cryptoInfoDto.toCryptoInfo(id)
                 ResultModel.Success(result)
             } catch (t: Throwable) {
                 t.printStackTrace()

@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
@@ -80,7 +81,7 @@ fun AppContent(
                                 modifier = Modifier.padding(bottom = 6.dp)
                             )
                         },
-                        label = { Text(text = screen.label) },
+                        label = { Text(text = screen.label, fontSize = 12.sp) },
                         selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
                         selectedContentColor = LightPrimary,
                         alwaysShowLabel = true,

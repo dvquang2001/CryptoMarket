@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import jetpack.tutorial.cryptoapp.R
 import jetpack.tutorial.cryptoapp.ui.theme.CryptoAppTheme
@@ -17,7 +18,8 @@ import jetpack.tutorial.cryptoapp.ui.theme.CryptoAppTheme
 @Composable
 fun ProfileScreen(
     navigator: DestinationsNavigator,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: ProfileViewModel = hiltViewModel()
 ) {
     Column(
         modifier = modifier

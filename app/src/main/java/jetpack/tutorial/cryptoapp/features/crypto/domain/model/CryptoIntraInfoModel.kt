@@ -13,4 +13,9 @@ fun CryptoIntraInfoModel.convertToListPairData(): List<PairData> {
 data class PairData(
     val timeLong: Double? = null,
     val price: Double? = null
-)
+) {
+
+    override fun toString(): String {
+        return "Time: $timeLong - Price: $price"
+    }
+}

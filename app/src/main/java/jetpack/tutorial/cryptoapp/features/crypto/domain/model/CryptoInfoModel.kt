@@ -6,5 +6,6 @@ data class CryptoInfoModel(
     val name: String,
     val image: String,
     val currentPrice: Double,
+    val totalVolume: Long,
 )
 
