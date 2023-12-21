@@ -1,6 +1,7 @@
 package jetpack.tutorial.cryptoapp.presentation.main.coin_info
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,10 +21,10 @@ import coil.compose.AsyncImage
 import jetpack.tutorial.cryptoapp.R
 import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoInfoModel
 import jetpack.tutorial.cryptoapp.ui.theme.LargeTextBold
-import jetpack.tutorial.cryptoapp.ui.theme.LargeTextSemiBold
 
 @Composable
 fun CoinInfoHeader(
+    onBackClicked: () -> Unit,
     crypto: CryptoInfoModel,
     modifier: Modifier = Modifier,
 ) {
@@ -36,11 +37,15 @@ fun CoinInfoHeader(
         ) {
             Image(
                 painter = painterResource(id = R.drawable.ic_arrow_left),
-                contentDescription = "Back"
+                contentDescription = "Back",
+                modifier = Modifier
+                    .clickable {
+                        onBackClicked()
+                    }
             )
             Spacer(modifier = Modifier.width(8.dp))
             AsyncImage(
-                model = crypto.image,
+                model = crypto.imageSmall,
                 contentDescription = "coin",
                 modifier = Modifier
                     .size(40.dp)
@@ -48,9 +53,9 @@ fun CoinInfoHeader(
             )
             Text(
                 text = crypto.name,
-                style = LargeTextSemiBold
+                style = LargeTextBold
             )
-            Text(text = "(${crypto.symbol})")
+            Text(text = " (${crypto.symbol.uppercase()})")
             Spacer(modifier = Modifier.width(12.dp))
             Image(
                 painter = painterResource(id = R.drawable.ic_star),

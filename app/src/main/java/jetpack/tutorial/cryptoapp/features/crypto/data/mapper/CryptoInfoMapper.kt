@@ -1,6 +1,5 @@
 package jetpack.tutorial.cryptoapp.features.crypto.data.mapper
 
-import android.util.Log
 import jetpack.tutorial.cryptoapp.features.crypto.data.remote.dto.CryptoInfoDto
 import jetpack.tutorial.cryptoapp.features.crypto.data.remote.dto.market_data.MarketData
 import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoInfoModel
@@ -12,6 +11,8 @@ fun CryptoInfoDto.toCryptoInfo(currencyId: String): CryptoInfoModel {
         symbol,
         name,
         image.thumb,
+        image.small,
+        image.large,
         currentPrice,
         totalVolume,
     )
@@ -19,11 +20,6 @@ fun CryptoInfoDto.toCryptoInfo(currencyId: String): CryptoInfoModel {
 
 private fun getToTalVolumeValue(currencyId: String, marketData: MarketData?): Long {
     var totalVolume = 0L
-    if(marketData != null) {
-        Log.d("Main","oke ")
-    } else {
-        Log.d("Main","market null")
-    }
     marketData?.let {
         totalVolume = when (currencyId) {
             "aed" -> marketData.total_volume.aed
