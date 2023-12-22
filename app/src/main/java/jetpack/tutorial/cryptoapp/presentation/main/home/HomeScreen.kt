@@ -15,12 +15,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import jetpack.tutorial.cryptoapp.R
 import jetpack.tutorial.cryptoapp.destinations.CoinInfoScreenDestination
 import jetpack.tutorial.cryptoapp.presentation.main.common.CoinItem
 import jetpack.tutorial.cryptoapp.ui.theme.LargeTextSemiBold
@@ -45,7 +47,7 @@ fun HomeScreen(
         HomeHeader()
         Spacer(modifier = Modifier.height(32.dp))
         Text(
-            text = "Trending Coins",
+            text = stringResource(id = R.string.trending_coins),
             style = LargeTextSemiBold,
             fontSize = 20.sp)
        Spacer(modifier = Modifier.height(16.dp))

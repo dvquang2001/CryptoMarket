@@ -9,9 +9,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import jetpack.tutorial.cryptoapp.R
 import jetpack.tutorial.cryptoapp.ui.theme.ColorGreen
 import jetpack.tutorial.cryptoapp.ui.theme.ColorRed
 import jetpack.tutorial.cryptoapp.ui.theme.CryptoAppTheme
@@ -23,7 +25,10 @@ fun MarketHeader(
     totalCoinsPercent: Double,
     modifier: Modifier = Modifier
 ) {
-    val titleText = if(totalCoinsPercent < 0) "Market is down" else "Market is up"
+    val titleText = if (totalCoinsPercent < 0)
+        stringResource(id = R.string.market_is_down)
+    else
+        stringResource(id = R.string.market_is_up)
 
     val color = if(totalCoinsPercent < 0) ColorRed else ColorGreen
     Column(
@@ -45,7 +50,7 @@ fun MarketHeader(
         }
         Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = "In the past 24 hours",
+            text = stringResource(id = R.string.in_the_past_24_hours),
             style = SmallTextRegular
         )
     }

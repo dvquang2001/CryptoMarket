@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -38,19 +39,19 @@ fun HomeHeader(
             )
     ) {
         Text(
-            text = "Welcome",
+            text = stringResource(id = R.string.welcome),
             style = SmallTextRegular,
             color = ColorWhite
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "Make your first Investment today",
+            text = stringResource(id = R.string.home_title),
             fontStyle = FontStyle(R.font.open_sans_bold),
             color = ColorWhite,
             fontSize = 20.sp
         )
         Spacer(modifier = Modifier.height(20.dp))
-        CaButton(text = "Invest Today", onClick = { /*TODO*/ })
+        CaButton(text = stringResource(id = R.string.invest_today), onClick = { /*TODO*/ })
     }
 }
 

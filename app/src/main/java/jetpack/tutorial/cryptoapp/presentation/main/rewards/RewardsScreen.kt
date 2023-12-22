@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -41,14 +42,17 @@ fun RewardsScreen(
             Spacer(modifier = Modifier.height(8.dp))
         }
         item {
-            ReferralCategory(state = state)
+            ReferralCategory(
+                totalReferral = state.totalReferral,
+                totalQualifiedReferral = state.totalQualifiedReferral
+            )
             Spacer(modifier = Modifier.height(8.dp))
         }
         item {
             RewardsCard(
-                title = "Refer and Earn",
-                content = "Refer you Friend and Win Cryptocoins",
-                textButton = "Refer Now",
+                title = stringResource(id = R.string.refer_and_earn),
+                content = stringResource(id = R.string.refer_you_friend_and_win_crypto_coins),
+                textButton = stringResource(id = R.string.refer_now),
                 imageRes = R.drawable.ic_refer_and_earn,
                 backgroundColor = ColorOrange,
                 onButtonClicked = {
@@ -59,9 +63,9 @@ fun RewardsScreen(
         }
         item {
             RewardsCard(
-                title = "Rewards",
-                content = "Like, Share & get free coupons",
-                textButton = "Share Now",
+                title = stringResource(id = R.string.rewards),
+                content = stringResource(id = R.string.like_share_get_coupons),
+                textButton = stringResource(id = R.string.share_now),
                 imageRes = R.drawable.ic_rewards_share,
                 backgroundColor = ColorPurple,
                 onButtonClicked = {

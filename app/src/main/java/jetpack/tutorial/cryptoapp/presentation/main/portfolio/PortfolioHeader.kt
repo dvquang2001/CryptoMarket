@@ -15,9 +15,11 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import jetpack.tutorial.cryptoapp.R
 import jetpack.tutorial.cryptoapp.ui.theme.ColorWhite
 import jetpack.tutorial.cryptoapp.ui.theme.CryptoAppTheme
 import jetpack.tutorial.cryptoapp.ui.theme.LargeTextBold
@@ -43,14 +45,14 @@ fun PortfolioHeader(
             )
     ) {
         Text(
-            text = "PortFolio",
+            text = stringResource(id = R.string.portfolio),
             style = LargeTextBold,
             fontSize = 20.sp,
             color = ColorWhite
         )
         Spacer(modifier = Modifier.height(24.dp))
         Text(
-            text = "Holding value",
+            text = stringResource(id = R.string.holding_value),
             style = SmallTextRegular,
             color = ColorWhite
         )
@@ -65,7 +67,7 @@ fun PortfolioHeader(
         Row {
             Column {
                 Text(
-                    text = "Invested value",
+                    text = stringResource(id = R.string.invested_value),
                     style = SmallTextRegular,
                     color = ColorWhite
                 )
@@ -87,7 +89,7 @@ fun PortfolioHeader(
             )
             Column {
                 Text(
-                    text = "Available INR",
+                    text = stringResource(id = R.string.available_inr),
                     style = SmallTextRegular,
                     color = ColorWhite
                 )

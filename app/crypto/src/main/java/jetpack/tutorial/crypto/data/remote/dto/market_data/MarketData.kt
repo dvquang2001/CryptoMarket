@@ -15,7 +15,7 @@ data class MarketData(
     val last_updated: String,
     val low_24h: Low24h,
     val market_cap: MarketCap,
-    val market_cap_change_24h: Long,
+    val market_cap_change_24h: Double,
     val market_cap_change_24h_in_currency: MarketCapChange24hInCurrency,
     val market_cap_change_percentage_24h: Double,
     val market_cap_change_percentage_24h_in_currency: MarketCapChangePercentage24hInCurrency,

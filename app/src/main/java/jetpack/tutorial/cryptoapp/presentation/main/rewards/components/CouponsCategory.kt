@@ -10,9 +10,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import jetpack.tutorial.cryptoapp.R
 import jetpack.tutorial.cryptoapp.presentation.main.rewards.RewardsViewModel
 import jetpack.tutorial.cryptoapp.ui.theme.ColorBlack
 import jetpack.tutorial.cryptoapp.ui.theme.ColorWhite
@@ -35,23 +37,23 @@ fun CouponsCategory(
             .padding(20.dp)
     ) {
         Text(
-            text = "Coupons",
+            text = stringResource(id = R.string.coupons),
             style = LargeTextBold,
             fontSize = 20.sp
         )
         Spacer(modifier = Modifier.height(10.dp))
         ListTile(
-            title = "No.of Coupons Won",
+            title = stringResource(id = R.string.no_of_coupons_won),
             result = state.couponsWonAmount.toString(),
             textResultColor = ColorBlack
         )
         ListTile(
-            title = "Tokens won from Spin so far",
+            title = stringResource(id = R.string.tokens_won_from_spin_so_far),
             result = state.tokensWonFromSpinAmount.toString(),
             textResultColor = LightPrimary
         )
         ListTile(
-            title = "Remaining Coupons to Spin",
+            title = stringResource(id = R.string.remaining_coupons_to_spin),
             result = state.remainingCouponsAmount.toString(),
             textResultColor = LightPrimary
         )

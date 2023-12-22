@@ -10,10 +10,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import jetpack.tutorial.cryptoapp.presentation.main.rewards.RewardsViewModel
+import jetpack.tutorial.cryptoapp.R
 import jetpack.tutorial.cryptoapp.ui.theme.ColorBlack
 import jetpack.tutorial.cryptoapp.ui.theme.ColorWhite
 import jetpack.tutorial.cryptoapp.ui.theme.CryptoAppTheme
@@ -22,8 +23,9 @@ import jetpack.tutorial.cryptoapp.ui.theme.LightPrimary
 
 @Composable
 fun ReferralCategory(
-    state: RewardsViewModel.ViewState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    totalReferral: Int = 0,
+    totalQualifiedReferral: Int = 0,
 ) {
     Column (
         modifier = modifier
@@ -35,19 +37,19 @@ fun ReferralCategory(
             .padding(20.dp)
     ) {
         Text(
-            text = "Referral",
+            text = stringResource(id = R.string.referral),
             style = LargeTextBold,
             fontSize = 20.sp
         )
         Spacer(modifier = Modifier.height(10.dp))
         ListTile(
-            title = "Total No of referral",
-            result = state.totalReferral.toString(),
+            title = stringResource(id = R.string.total_no_of_referral),
+            result = totalReferral.toString(),
             textResultColor = ColorBlack
         )
         ListTile(
-            title = "Total No of Qualified referral",
-            result = state.totalQualifiedReferral.toString(),
+            title = stringResource(id = R.string.total_no_of_qualified_referral),
+            result = totalQualifiedReferral.toString(),
             textResultColor = LightPrimary
         )
     }
@@ -57,6 +59,6 @@ fun ReferralCategory(
 @Composable
 fun PreviewReferralCategory() {
     CryptoAppTheme {
-        ReferralCategory(RewardsViewModel.ViewState())
+        ReferralCategory()
     }
 }

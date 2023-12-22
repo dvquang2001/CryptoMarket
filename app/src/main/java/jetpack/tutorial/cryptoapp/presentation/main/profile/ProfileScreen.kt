@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -32,32 +33,38 @@ fun ProfileScreen(
             item {
                 ProfileField(
                     iconRes = R.drawable.ic_history,
-                    text = "History")
+                    text = stringResource(id = R.string.history)
+                )
             }
             item {
                 ProfileField(
                     iconRes = R.drawable.ic_bank_details,
-                    text = "Bank Details")
+                    text = stringResource(id = R.string.bank_details)
+                )
             }
             item {
                 ProfileField(
                     iconRes = R.drawable.ic_notifications,
-                    text = "Notifications")
+                    text = stringResource(id = R.string.notifications)
+                )
             }
             item {
                 ProfileField(
                     iconRes = R.drawable.ic_security,
-                    text = "Security")
+                    text = stringResource(id = R.string.security)
+                )
             }
             item {
                 ProfileField(
                     iconRes = R.drawable.ic_help_and_support,
-                    text = "Help and Support")
+                    text = stringResource(id = R.string.help_and_support)
+                )
             }
             item {
                 ProfileField(
                     iconRes = R.drawable.ic_terms_and_conditions,
-                    text = "Terms and Conditions")
+                    text = stringResource(id = R.string.terms_and_conditions)
+                )
             }
         }
     }

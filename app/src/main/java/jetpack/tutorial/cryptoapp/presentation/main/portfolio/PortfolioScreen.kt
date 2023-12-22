@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -22,6 +23,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import jetpack.tutorial.cryptoapp.R
 import jetpack.tutorial.cryptoapp.destinations.CoinInfoScreenDestination
 import jetpack.tutorial.cryptoapp.presentation.main.common.CaButton
 import jetpack.tutorial.cryptoapp.presentation.main.common.CoinItem
@@ -53,13 +55,13 @@ fun PortfolioScreen(
             modifier = Modifier.fillMaxWidth()
         ){
             CaButton(
-                text = "Deposit INR",
+                text = stringResource(id = R.string.deposit_inr),
                 onClick = { /*TODO*/ },
                 textColor = ColorWhite,
                 bgColor = LightPrimary
             )
             CaButton(
-                text = "Withdraw INR",
+                text = stringResource(id = R.string.withdraw_inr),
                 onClick = { /*TODO*/ }
             )
         }
