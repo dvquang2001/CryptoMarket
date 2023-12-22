@@ -39,6 +39,7 @@ fun CoinInfoHeader(
                 painter = painterResource(id = R.drawable.ic_arrow_left),
                 contentDescription = "Back",
                 modifier = Modifier
+                    .padding(end = 16.dp)
                     .clickable {
                         onBackClicked()
                     }

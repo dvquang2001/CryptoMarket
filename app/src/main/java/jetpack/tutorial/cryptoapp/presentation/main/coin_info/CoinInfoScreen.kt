@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import jetpack.tutorial.cryptoapp.R
 import jetpack.tutorial.cryptoapp.ui.theme.ColorWhite
 import jetpack.tutorial.cryptoapp.ui.theme.LargeTextBold
@@ -41,6 +42,7 @@ import jetpack.tutorial.cryptoapp.ui.theme.SmallTextRegular
 @Composable
 fun CoinInfoScreen(
     id: String,
+    navigator: DestinationsNavigator,
     modifier: Modifier = Modifier,
     viewModel: CoinInfoViewModel = hiltViewModel()
 ) {
@@ -58,7 +60,7 @@ fun CoinInfoScreen(
             CoinInfoHeader(
                 crypto = cryptoInfo,
                 onBackClicked = {
-                    //todo: back
+                    navigator.popBackStack()
                 }
             )
             Spacer(modifier = Modifier.height(60.dp))
