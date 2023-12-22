@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoListingModel
+import jetpack.tutorial.crypto.domain.model.CryptoListingModel
 import jetpack.tutorial.cryptoapp.ui.theme.ColorGreen
 import jetpack.tutorial.cryptoapp.ui.theme.ColorRed
 import jetpack.tutorial.cryptoapp.ui.theme.ColorWhite

@@ -1,6 +1,5 @@
 package jetpack.tutorial.cryptoapp.presentation.main.profile
 
-import android.graphics.drawable.Icon
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column

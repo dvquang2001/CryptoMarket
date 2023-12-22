@@ -2,18 +2,18 @@ package jetpack.tutorial.cryptoapp.presentation.main.coin_info
 
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jetpack.tutorial.cryptoapp.core.networking.utils.ResultModel
-import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoInfoModel
-import jetpack.tutorial.cryptoapp.features.crypto.domain.model.PairData
-import jetpack.tutorial.cryptoapp.features.crypto.domain.model.convertToListPairData
-import jetpack.tutorial.cryptoapp.features.crypto.domain.usecase.get_crypto_info.CryptoInfoParam
-import jetpack.tutorial.cryptoapp.features.crypto.domain.usecase.get_crypto_info.GetCryptoInfoUseCase
-import jetpack.tutorial.cryptoapp.features.crypto.domain.usecase.get_crypto_intra_info.CryptoIntraInfoParam
-import jetpack.tutorial.cryptoapp.features.crypto.domain.usecase.get_crypto_intra_info.GetCryptoIntraInfoUseCase
+import jetpack.tutorial.crypto.domain.model.CryptoInfoModel
+import jetpack.tutorial.crypto.domain.model.PairData
+import jetpack.tutorial.crypto.domain.model.convertToListPairData
+import jetpack.tutorial.crypto.domain.usecase.get_crypto_info.CryptoInfoParam
+import jetpack.tutorial.crypto.domain.usecase.get_crypto_info.GetCryptoInfoUseCase
+import jetpack.tutorial.crypto.domain.usecase.get_crypto_intra_info.CryptoIntraInfoParam
+import jetpack.tutorial.crypto.domain.usecase.get_crypto_intra_info.GetCryptoIntraInfoUseCase
 import jetpack.tutorial.cryptoapp.presentation.base.BaseViewEffect
 import jetpack.tutorial.cryptoapp.presentation.base.BaseViewEvent
 import jetpack.tutorial.cryptoapp.presentation.base.BaseViewModel
 import jetpack.tutorial.cryptoapp.presentation.base.BaseViewState
+import jetpack.tutorial.libcore.networking.utils.ResultModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -65,7 +65,7 @@ class CoinInfoViewModel @Inject constructor(
     private fun getCoinPrices() {
         val id = savedStateHandle.get<String>("id") ?: return
         getCoinPricesJob?.cancel()
-        getCoinPricesJob = getCryptoIntraInfoUseCase.execute(CryptoIntraInfoParam(id))
+        getCoinPricesJob = getCryptoIntraInfoUseCase.execute(CryptoIntraInfoParam(id = id))
             .onEach {
                 when(it) {
                     is ResultModel.Success -> {

@@ -18,8 +18,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import jetpack.tutorial.crypto.domain.model.CryptoInfoModel
 import jetpack.tutorial.cryptoapp.R
-import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoInfoModel
 import jetpack.tutorial.cryptoapp.ui.theme.LargeTextBold
 
 @Composable

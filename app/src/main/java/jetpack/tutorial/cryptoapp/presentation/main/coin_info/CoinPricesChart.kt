@@ -2,7 +2,6 @@ package jetpack.tutorial.cryptoapp.presentation.main.coin_info
 
 import android.graphics.Paint
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Canvas
 import androidx.compose.runtime.Composable
@@ -19,7 +18,7 @@ import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import jetpack.tutorial.cryptoapp.features.crypto.domain.model.PairData
+import jetpack.tutorial.crypto.domain.model.PairData
 import jetpack.tutorial.cryptoapp.presentation.extentions.convertToDateTime
 import jetpack.tutorial.cryptoapp.ui.theme.LightPrimary
 import kotlin.math.round

@@ -1,6 +1,6 @@
 package jetpack.tutorial.cryptoapp.presentation.extentions
 
-import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoListingModel
+import jetpack.tutorial.crypto.domain.model.CryptoListingModel
 
 fun List<CryptoListingModel>.toCryptoListingUI(): List<CryptoListingModel> {
     return this.map { crypto ->
