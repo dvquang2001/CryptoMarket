@@ -1,22 +1,20 @@
 package jetpack.tutorial.cryptoapp.presentation.base
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.List
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.annotation.DrawableRes
+import jetpack.tutorial.cryptoapp.R
 
-sealed class Screen(val route: String, val icon: ImageVector, val label: String) {
-    data object Home : Screen("home", Icons.Default.Home, "Home")
-    data object Portfolio : Screen("portfolio", Icons.Default.Info, "Portfolio")
-    data object Market : Screen("market", Icons.Default.List, "Market")
-    data object Profile : Screen("profile", Icons.Default.AccountCircle, "Profile")
+sealed class Screen(val route: String, @DrawableRes val iconRes: Int, val label: String) {
+    data object Home : Screen("home", R.drawable.ic_home, "Home")
+    data object Portfolio : Screen("portfolio", R.drawable.ic_portfolio, "Portfolio")
+    data object Rewards: Screen("rewards", R.drawable.ic_rewards, "Rewards")
+    data object Market : Screen("market", R.drawable.ic_market, "Market")
+    data object Profile : Screen("profile", R.drawable.ic_profile, "Profile")
 }
 
 val itemsScreen = listOf(
     Screen.Home,
     Screen.Portfolio,
+    Screen.Rewards,
     Screen.Market,
     Screen.Profile,
 )

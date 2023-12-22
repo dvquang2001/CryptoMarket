@@ -16,6 +16,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -34,6 +36,7 @@ import jetpack.tutorial.cryptoapp.presentation.main.home.HomeScreen
 import jetpack.tutorial.cryptoapp.presentation.main.market.MarketScreen
 import jetpack.tutorial.cryptoapp.presentation.main.portfolio.PortfolioScreen
 import jetpack.tutorial.cryptoapp.presentation.main.profile.ProfileScreen
+import jetpack.tutorial.cryptoapp.presentation.main.rewards.RewardsScreen
 import jetpack.tutorial.cryptoapp.ui.theme.ColorWhite
 import jetpack.tutorial.cryptoapp.ui.theme.CryptoAppTheme
 import jetpack.tutorial.cryptoapp.ui.theme.LightPrimary
@@ -77,13 +80,13 @@ fun AppContent(
                     BottomNavigationItem(
                         icon = {
                             Icon(
-                                imageVector = screen.icon, contentDescription = null,
+                                painter =  painterResource(id = screen.iconRes), contentDescription = null,
                                 modifier = Modifier.padding(bottom = 6.dp)
                             )
                         },
                         label = { Text(text = screen.label, fontSize = 12.sp) },
                         selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
-                        selectedContentColor = LightPrimary,
+                        selectedContentColor = Color.Blue,
                         alwaysShowLabel = true,
                         onClick = {
                             navController.navigate(screen.route) {
@@ -109,6 +112,9 @@ fun AppContent(
             }
             composable(Screen.Portfolio.route) {
                 PortfolioScreen(navigator)
+            }
+            composable(Screen.Rewards.route) {
+                RewardsScreen(navigator)
             }
             composable(Screen.Market.route) {
                 MarketScreen(navigator)
