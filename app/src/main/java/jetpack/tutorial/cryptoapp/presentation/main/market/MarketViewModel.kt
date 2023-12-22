@@ -1,16 +1,16 @@
 package jetpack.tutorial.cryptoapp.presentation.main.market
 
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jetpack.tutorial.cryptoapp.core.networking.utils.ResultModel
-import jetpack.tutorial.cryptoapp.features.crypto.domain.model.CryptoListingModel
-import jetpack.tutorial.cryptoapp.features.crypto.domain.usecase.get_crypto_listing.CryptoListingParam
-import jetpack.tutorial.cryptoapp.features.crypto.domain.usecase.get_crypto_listing.GetCryptoListingUseCase
+import jetpack.tutorial.crypto.domain.model.CryptoListingModel
+import jetpack.tutorial.crypto.domain.usecase.get_crypto_listing.CryptoListingParam
+import jetpack.tutorial.crypto.domain.usecase.get_crypto_listing.GetCryptoListingUseCase
 import jetpack.tutorial.cryptoapp.presentation.base.BaseViewEffect
 import jetpack.tutorial.cryptoapp.presentation.base.BaseViewEvent
 import jetpack.tutorial.cryptoapp.presentation.base.BaseViewModel
 import jetpack.tutorial.cryptoapp.presentation.base.BaseViewState
 import jetpack.tutorial.cryptoapp.presentation.extentions.roundBy2Numbers
 import jetpack.tutorial.cryptoapp.presentation.extentions.toCryptoListingUI
+import jetpack.tutorial.libcore.networking.utils.ResultModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

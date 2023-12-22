@@ -15,3 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "CryptoApp"
 include(":app")
+include(":app:libcore")
+include(":app:authentication")
+include(":app:crypto")

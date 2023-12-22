@@ -20,8 +20,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import jetpack.tutorial.authentication.domain.model.UserDataModel
 import jetpack.tutorial.cryptoapp.R
-import jetpack.tutorial.cryptoapp.features.auth.domain.model.UserDataModel
 import jetpack.tutorial.cryptoapp.presentation.main.common.CaButton
 import jetpack.tutorial.cryptoapp.ui.theme.ColorWhite
 import jetpack.tutorial.cryptoapp.ui.theme.CryptoAppTheme
