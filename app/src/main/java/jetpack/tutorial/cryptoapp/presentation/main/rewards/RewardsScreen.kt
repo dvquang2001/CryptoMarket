@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import jetpack.tutorial.cryptoapp.R
+import jetpack.tutorial.cryptoapp.destinations.ReferAndEarnScreenDestination
 import jetpack.tutorial.cryptoapp.presentation.main.rewards.components.CouponsCategory
 import jetpack.tutorial.cryptoapp.presentation.main.rewards.components.ReferralCategory
 import jetpack.tutorial.cryptoapp.presentation.main.rewards.components.RewardsCard
@@ -69,7 +70,7 @@ fun RewardsScreen(
                 imageRes = R.drawable.ic_rewards_share,
                 backgroundColor = ColorPurple,
                 onButtonClicked = {
-                    //todo: onShareNow
+                    navigator.navigate(ReferAndEarnScreenDestination())
                 }
             )
             Spacer(modifier = Modifier.height(8.dp))
