@@ -93,4 +93,7 @@ dependencies {
 
     // coil
     implementation("io.coil-kt:coil-compose:2.5.0")
+
+    // admob
+    implementation("com.google.android.gms:play-services-ads:22.6.0")
 }

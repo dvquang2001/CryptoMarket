@@ -1,9 +1,13 @@
 package jetpack.tutorial.cryptoapp
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
@@ -20,12 +24,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -37,6 +50,8 @@ import jetpack.tutorial.cryptoapp.presentation.main.market.MarketScreen
 import jetpack.tutorial.cryptoapp.presentation.main.portfolio.PortfolioScreen
 import jetpack.tutorial.cryptoapp.presentation.main.profile.ProfileScreen
 import jetpack.tutorial.cryptoapp.presentation.main.rewards.RewardsScreen
+import jetpack.tutorial.cryptoapp.presentation.utils.Constants
+import jetpack.tutorial.cryptoapp.presentation.utils.Constants.AD_BANNER_UNIT_ID_TEST
 import jetpack.tutorial.cryptoapp.ui.theme.ColorWhite
 import jetpack.tutorial.cryptoapp.ui.theme.CryptoAppTheme
 import jetpack.tutorial.cryptoapp.ui.theme.LightPrimary
@@ -46,6 +61,10 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        MobileAds.initialize(this)
+        MobileAds.setRequestConfiguration(
+            RequestConfiguration.Builder().setTestDeviceIds(listOf("ABCDEF123")).build()
+        )
         setContent {
             CryptoAppTheme {
                 // A surface container using the 'background' color from the theme
@@ -53,7 +72,14 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    DestinationsNavHost(navGraph = NavGraphs.root)
+                    Column {
+                        DestinationsNavHost(
+                            navGraph = NavGraphs.root,
+                            modifier = Modifier
+                                .weight(1f)
+                        )
+                        AdmobBanner(modifier = Modifier.fillMaxWidth())
+                    }
                 }
             }
         }
@@ -105,7 +131,8 @@ fun AppContent(
         NavHost(
             navController = navController,
             startDestination = Screen.Home.route,
-            Modifier.padding(innerPadding)
+            modifier = Modifier
+                .padding(innerPadding)
         ) {
             composable(Screen.Home.route) {
                 HomeScreen(navigator)
@@ -124,4 +151,21 @@ fun AppContent(
             }
         }
     }
+}
+
+@Composable
+fun AdmobBanner(
+    modifier: Modifier = Modifier
+) {
+    AndroidView(
+        factory = { context ->
+            AdView(context).apply {
+                setAdSize(AdSize.BANNER)
+                adUnitId = AD_BANNER_UNIT_ID_TEST
+                loadAd(AdRequest.Builder().build())
+            }
+        },
+        modifier = modifier
+            .fillMaxWidth()
+    )
 }
