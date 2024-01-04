@@ -1,7 +1,11 @@
-_ Get list of trending coins:
+CRYPTO MARKET
 
-<img width="282" alt="image" src="https://github.com/dvquang2001/CryptoMarket/assets/74613743/e315a9bf-10cb-47c0-b714-284cb9727b9e">
+Observe changes in coins on the market:
 
-_ Graph of cash flow changes:
+<img width="287" alt="image" src="https://github.com/dvquang2001/CryptoMarket/assets/74613743/394c2219-1763-4bea-8c91-d14763bb80de">
 
-<img width="281" alt="image" src="https://github.com/dvquang2001/CryptoMarket/assets/74613743/94c00999-2319-479d-92de-293054dbbd65">
+
+Displays a graph of cash flow changes:
+
+<img width="283" alt="image" src="https://github.com/dvquang2001/CryptoMarket/assets/74613743/471e34b7-4989-4634-9128-7c2b7baebe11">
+
